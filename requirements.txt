@@ -11,3 +11,4 @@ tagme @ git+https://github.com/alabeybahri/tagme-python.git@aceca09c3cf0aa5eb1a9
 python-dotenv==1.0.1
 psycopg2
 gunicorn
+numba
