@@ -9,3 +9,4 @@ spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 tagme @ git+https://github.com/alabeybahri/tagme-python.git@aceca09c3cf0aa5eb1a90d8f02472230e57a8a3e
 python-dotenv==1.0.1
+psycopg2
