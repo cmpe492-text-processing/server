@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from discoverable.graph.network import Network
+from graph.network import Network
 
 
 if __name__ == "__main__":

@@ -3,8 +3,8 @@ import os
 
 from dotenv import load_dotenv
 
-from discoverable.utils.database import DatabaseManager
-from discoverable.utils.tagme_manager import TagmeManager
+from utils.database import DatabaseManager
+from utils.tagme_manager import TagmeManager
 
 DEBUG = True
 
@@ -99,26 +99,6 @@ def get_relatedness(entity1, entity2):
 
 def export_graph(prefix="general"):
     global raw_data, occurrences, relatedness, sentiment, entity_titles
-    okey = []
-    with open(result_path + "{}_nodes.csv".format(prefix), "w") as f:
-        f.write("wiki_id,entity_title,sentiment\n")
-        for wiki_id in entity_titles:
-            sentiment_scores = sentiment.get(wiki_id, [])
-            if not sentiment_scores:
-                continue
-            sentiment_score = sum([score.get("compound", 0) for score in sentiment_scores]) / len(sentiment_scores)
-            # escape commas in entity titles
-            entity_titles[wiki_id] = entity_titles[wiki_id].replace(",", "")
-            f.write(f"{wiki_id},{entity_titles[wiki_id]},{sentiment_score}\n")
-            okey.append(wiki_id)
-
-    with open(result_path + "{}_edges.csv".format(prefix), "w") as f:
-        f.write("entity1,entity2,edge_thickness,edge_weight\n")
-        for key in occurrences:
-            entity1, entity2 = key
-            if entity1 not in okey or entity2 not in okey:
-                continue
-            f.write(f"{entity1},{entity2},{occurrences[key]},{relatedness[key]}\n")
 
 
 def main_export_general():

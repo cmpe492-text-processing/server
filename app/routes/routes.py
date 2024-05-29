@@ -5,10 +5,7 @@ from nlp.feature_extractor import FeatureExtractor
 from services.graph import get_graph
 
 
-# from network import Network
-
-
-def init_routes(app):
+def init_routes(app, db):
     @app.route('/')
     def home():
         return render_template('home.html')
@@ -38,8 +35,7 @@ def init_routes(app):
 
         wiki_id = int(wiki_id)
 
-        return jsonify(get_graph(wiki_id)), 200
-
+        return jsonify(get_graph(wiki_id, db)), 200
 
     @app.route('/wiki-info', methods=['GET'])
     def wiki_info():
@@ -64,7 +60,8 @@ def init_routes(app):
         feature_extractor = FeatureExtractor(wiki_id)
         response, most_occurred_entities, main_entity = feature_extractor.create_extracted_features_json_wo_relatedness()
 
-        return jsonify({'most_occurred_entities': most_occurred_entities, 'data': response, 'main_entity': main_entity}), 200
+        return jsonify(
+            {'most_occurred_entities': most_occurred_entities, 'data': response, 'main_entity': main_entity}), 200
 
     @app.route('/part-of-speech', methods=['GET'])
     def part_of_speech():

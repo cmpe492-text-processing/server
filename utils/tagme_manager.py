@@ -109,9 +109,11 @@ class TagmeManager:
             print(f"Error fetching relatedness score: {e}")
             return None
 
-    def get_relatedness_map(
-        self, entities: list[(int, int)], debug=False
-    ) -> dict[(int, int), float]:
+    def get_relatedness_map(self,
+                            entities: list[(int, int)],
+                            debug=False) \
+            -> dict[(int, int), float]:
+
         relatedness_map: dict[(int, int), float] = {}
         entities = [tuple(sorted(entity_pair)) for entity_pair in entities]
         tagme.GCUBE_TOKEN = self.api_key
