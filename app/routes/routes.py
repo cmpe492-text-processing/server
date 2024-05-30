@@ -1,6 +1,6 @@
 from spacy import displacy
 from flask import request, render_template, jsonify
-from app.services.graph import get_graph
+import spacy
 from app.services.tagging import get_basic_info, get_wikidata_info
 from nlp.feature_extractor import FeatureExtractor
 
@@ -80,8 +80,7 @@ def init_routes(app, db):
         if query.strip() == "":
             return jsonify({"error": "Empty query"}), 204
 
-        from main import nlp
-
+        nlp = spacy.load("en_core_web_sm")
         rendered = displacy.render(nlp(query), style="dep")
 
         return rendered, 200
