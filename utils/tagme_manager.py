@@ -78,7 +78,7 @@ class TagmeManager:
         try:
             return tagme.annotate(txt).get_annotations(self.rho)
         except Exception as e:
-            print(f"Error tagging text: {e.__str__()}")
+            print(f"Error tagging text, skipping")
             return []
 
     @staticmethod

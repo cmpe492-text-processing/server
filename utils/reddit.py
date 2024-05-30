@@ -45,19 +45,22 @@ class Reddit:
     def get_hot_posts(self, subreddit, limit=10) -> list[RedditPost]:
         posts: list[RedditPost] = []
         for submission in self.reddit.subreddit(subreddit).hot(limit=limit):
-            post = RedditPost(
-                id=submission.id,
-                author_id=submission.author.id,
-                created_utc=submission.created_utc,
-                name=submission.name,
-                permalink=submission.permalink,
-                score=submission.score,
-                selftext=submission.selftext,
-                subreddit=submission.subreddit.display_name,
-                title=submission.title,
-                upvote_ratio=submission.upvote_ratio
-            )
-            posts.append(post)
+            try:
+                post = RedditPost(
+                    id=submission.id,
+                    author_id=submission.author.id,
+                    created_utc=submission.created_utc,
+                    name=submission.name,
+                    permalink=submission.permalink,
+                    score=submission.score,
+                    selftext=submission.selftext,
+                    subreddit=submission.subreddit.display_name,
+                    title=submission.title,
+                    upvote_ratio=submission.upvote_ratio
+                )
+                posts.append(post)
+            except Exception as e:
+                print(e)
 
         return posts
 
@@ -86,18 +89,21 @@ class Reddit:
     def get_new_posts(self, subreddit, limit=10) -> list[RedditPost]:
         posts: list[RedditPost] = []
         for submission in self.reddit.subreddit(subreddit).new(limit=limit):
-            post = RedditPost(
-                id=submission.id,
-                author_id=submission.author.id,
-                created_utc=submission.created_utc,
-                name=submission.name,
-                permalink=submission.permalink,
-                score=submission.score,
-                selftext=submission.selftext,
-                subreddit=submission.subreddit.display_name,
-                title=submission.title,
-                upvote_ratio=submission.upvote_ratio
-            )
-            posts.append(post)
+            try:
+                post = RedditPost(
+                    id=submission.id,
+                    author_id=submission.author.id,
+                    created_utc=submission.created_utc,
+                    name=submission.name,
+                    permalink=submission.permalink,
+                    score=submission.score,
+                    selftext=submission.selftext,
+                    subreddit=submission.subreddit.display_name,
+                    title=submission.title,
+                    upvote_ratio=submission.upvote_ratio
+                )
+                posts.append(post)
+            except Exception as e:
+                print(e)
 
         return posts
