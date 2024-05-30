@@ -1,0 +1,623 @@
+wiki_id,entity_title,sentiment
+72861,Atlanta Hawks,0.0
+507970,People (magazine),0.0
+25613,Racism,-0.20095
+4848272,Donald Trump,-0.010166972477064226
+1271962,Billiard table,0.0
+43254,Morality,0.3612
+58790,Fraud,-0.8019999999999998
+18935732,Associated Press,-0.4215
+260979,Bribery,-0.40197000000000005
+1755838,José María Merchán,0.0
+1197501,Gag order,-0.7845
+3276812,Trial,-0.230275
+7201,Contempt of court,-0.8374
+146699,Fine (penalty),-0.7845
+3258683,Stormy Daniels,-0.7845
+10861,The Trial,0.062028571428571426
+16927210,Paywall,-0.25634999999999997
+45676768,Updates (CNN Philippines),0.0
+18834674,Erection,0.0
+288379,LOL,0.4753
+17556,Laser,0.0
+92903,Ghetto,0.0
+256024,Abortion in the United States,-0.09106666666666667
+24113,President of the United States,0.011131250000000006
+19792942,Americans,-0.2431
+765,Abortion,-0.03774999999999999
+37600898,Abortion-rights movements,0.15716249999999998
+369040,Is–ought problem,0.0258
+6982432,Matter (philosophy),0.0258
+28151,State (polity),-0.06521111111111112
+99860,Voting,0.09365555555555555
+145166,Act of Parliament,0.1806
+77697,Will and testament,0.16798571428571427
+219599,Person,0.0
+51885,Multiculturalism,0.0
+7959,Democracy,-0.04322857142857143
+265752,Decision-making,0.0
+147885,Power (social and political),0.06364
+21748,Nationalism,0.0
+37600900,Anti-abortion movements,0.0
+51490,Rights,0.0
+105070,Organization,-0.4184
+317524,Action (philosophy),0.2202
+256025,Abortion debate,0.0
+11542,Federalism,0.0
+53451,Hegemony,0.0
+2345894,Social issue,0.0
+168592,Individual and group rights,0.0
+32070,Republican Party (United States),0.17375
+49139,Decentralization,0.0
+153149,Regulation,-0.025733333333333334
+4095924,Value (ethics),0.0
+1771587,Pregnancy,-0.148
+32344,Variance,0.0
+26563252,Prostitution law,0.0
+9087,Dynamical system,0.4767
+156371,Federation,0.0
+191145,Autonomy,0.0
+18949668,Law,-0.142875
+70603,Hermeneutics,0.128
+337689,Debate,0.3818
+22954,Plato,0.0
+519775,Political campaign,-0.07955
+26561880,Advocacy group,-0.28595
+706186,Reproductive rights,0.0
+18006808,Play (activity),0.296
+128027,Operant conditioning,0.0
+170653,Authority,0.0772
+28791,Sovereignty,0.0
+4019188,Westphalian sovereignty,0.0
+1348330,Opinion,0.0
+102883,Belief,0.0
+428002,Extremism,0.0
+461754,Chick-fil-A,0.0
+3138,Atlanta,0.0
+23123001,Boulevard (Atlanta),-0.4215
+9351929,The Way to Fight,-0.6249
+47921,Free will,0.19060000000000002
+10772350,History,-0.09336000000000001
+407940,Political machine,0.0
+14836066,You (Time Person of the Year),0.0
+7397,Color blindness,0.0
+1107599,Proof (rapper),0.0
+32021,Politics of the United States,-0.07475
+23004,Precedent,0.3335333333333334
+1437235,Audiobook,0.0
+45470,Manhattan,0.0
+18292460,Hush money,0.0
+21377251,United States presidential election, 2016,0.21989999999999998
+21351321,Criminal law,-0.451275
+32077,United States presidential election, 1996,0.0
+238253,Pornographic film,0.0
+23221,Playboy,0.0
+48916,Model (people),0.0
+175875,Critical mass,-0.3182
+19881,Management,0.0
+49607,Jargon,0.0
+26226578,United States federal probation and supervised release,-0.4215
+14559,Indictment,-0.2238
+62312,Forgery,-0.05225
+161228,Document,0.048900000000000006
+151604,Deception,0.2023
+29920,Truth,0.25243333333333334
+21830,Nature,0.21075
+24649,Plea,-0.1335
+24389,Public relations,0.4767
+12229,Government,0.42865
+271004,A. Magazine,0.4767
+37398,The Walt Disney Company,0.0
+29678,Trade,0.0
+19641,Mass media,0.1806
+22986,Politics,-0.04908
+1631852,Denial,-0.7906
+726337,Frameup,-0.5106
+161973,Accountability,0.0
+586834,Community service,0.0
+221737,Political history,0.0
+2770842,Event (philosophy),0.2023
+19378,Mind,0.0
+89532,Identity (philosophy),0.0
+31653,First Amendment to the United States Constitution,-0.4201
+5369738,The Nixons,0.0
+158936,Cover-up,0.0
+25473,Richard Nixon,0.0
+5785,Crime,-0.3318
+26937919,Barack Obama presidential campaign, 2012,0.0
+170717,Burglary,0.0
+38286,Inflation,-0.18308333333333335
+28758,Spacetime,0.0
+15328,Impeachment,-0.05318214285714285
+23688,Perjury,0.128
+240718,Obstruction of justice,0.5267
+8028602,The Power (Snap! song),0.0
+8983183,Money,0.0
+509500,Social influence,0.06364
+18985062,Information,0.0
+5571214,Election commission,0.0
+20161,Maze,0.0
+1138011,The Society of the Spectacle,-0.296
+258724,Political system,0.128
+25166191,Rule of law,0.0
+298565,Legal immunity,0.22725714285714285
+1795376,Impeachment in the United States,0.0
+428323,United States Court of Appeals for the Third Circuit,-0.0172
+556323,Settlement (litigation),0.4939
+23476,Plea bargain,0.4939
+32573,Victimology,-0.5106
+18932,Media bias,-0.18795
+16369,Justice,0.3511333333333333
+154708,List of national legal systems,0.3182
+161227,Critic,-0.296
+192617,Wealth,0.5574
+19376,Materialism,0.5574
+24073089,Folks!,0.0
+649702,Defender (association football),0.0
+10095213,Veep (TV series),0.0
+156541,A-side and B-side,0.0
+696946,Audience,0.0
+47678053,Point of view (philosophy),0.0
+294833,Institution,0.0
+326234,Take-out,0.0
+40473416,At the Heart of It All (album),0.0
+986871,Drug test,-0.4019
+2828803,Just Legal,0.128
+147871,Live (band),0.0
+185130,Modernity,0.0
+1164,Artificial intelligence,0.0
+277315,Opinion poll,0.3753666666666667
+367725,Donation,0.0
+426479,Showrunner,0.0
+8939450,Liberalism in the United States,0.0
+17501420,On the Issues,-0.0772
+44276,Gun control,-0.34
+15051,Immigration to the United States,0.148
+11220590,The War on Democracy,-0.5994
+6512,Coercion,-0.5267
+26636309,Progressivism,0.0
+18499,Left-wing politics,-0.5345
+161316,Presenter,0.0
+19280734,Liberalism,0.1806
+433079,The Beat (British band),0.4019
+595284,HIM (Finnish band),0.0
+2514888,Jury selection,0.0
+75358,Court,0.31245
+440936,Prosecutor,-0.4139857142857143
+228102,Defense (legal),-0.4019
+30680,The New York Times,-0.44880000000000003
+3883945,O. J. Simpson murder case,0.0
+1260585,Color commentator,-0.7783
+44720,Jury,-0.3454
+42359429,Civil law (common law),-0.6908
+2530518,Yes! (U.S. magazine),0.20095
+2329860,Agreement (linguistics),0.09969999999999998
+27761,School choice,0.23745
+48682829,Puerto Rican general election, 2016,0.23745
+20611504,Russian Empire,-0.10047999999999999
+34479965,Triumph Heritage Empowerment Party,0.20095
+650414,Moderate,0.0
+39619035,Centrism,0.0
+4918223,Company,0.5367999999999999
+10401954,Family,0.5367999999999999
+39206,Business,0.5167666666666667
+236850,Conflict of interest,0.1779
+214256,Nordstrom,0.028966666666666696
+449182,Chain store,-0.5719
+43152176,Always (MK song),0.6588
+43765390,Pushing On,0.6588
+39386,Engagement,0.4877
+1007253,Chilling effect,0.4877
+4158267,Self-dealing,0.0
+15462057,Backlash (2008),-0.2263
+113258,Lawsuit,-0.011420000000000019
+51913,Legislation,0.15445
+7283,Controversy,0.1027
+32759,Vice President of the United States,-0.296
+68651,Ambassador,-0.296
+2301803,Articles of impeachment,0.287975
+1341151,Cousin,0.25
+24909346,United States Senate,0.03158888888888889
+8536948,National Organization for Women,-0.11466666666666665
+300834,Acquittal,0.1121
+420724,Verdict,-0.26420000000000005
+70322,Suffrage,-0.0218
+31647,Article Two of the United States Constitution,-0.0178
+1296149,Impeachment and acquittal of Bill Clinton,-0.0089
+638903,PBS NewsHour,0.3182
+20781999,News,0.3182
+87893,Talk show,0.3182
+3829005,Reddit,-0.4939
+43851,Norm (social),-0.06634999999999999
+5043544,Democratic Party (United States),-0.13433333333333333
+368586,Speaker (politics),0.2023
+938728,Military service,0.2023
+145422,Joe Biden,0.28672
+887850,China national football team,-0.5423
+5405,China,-0.07883333333333335
+50100,Journalist,-0.27115
+18933066,Florida,-0.5423
+54376,Attorney general,0.0772
+4689264,Australia,0.0772
+849472,Push (professional wrestling),-0.7224
+1033826,Professional wrestling attacks,-0.07175000000000004
+4308572,Abuse of power,-0.7224
+25140,Perception,-0.0258
+23040,Political philosophy,0.0
+40786,Bias,-0.0258
+540802,Founding Fathers of the United States,0.296
+10698861,Consideration,-0.34
+1947778,Statutory interpretation,-0.34
+1002126,High crimes and misdemeanors,-0.34
+1320650,Crimes and Misdemeanors,-0.34
+43053038,Or Is It?,0.2218
+24864,Professional wrestling,-0.3875
+32977,Writing,-0.3612
+7753430,Psychopathy,-0.3612
+44026,United States National Security Council,0.34
+3471186,Affect (psychology),-0.074
+102226,The Washington Post,0.6705
+304113,News media,-0.19740000000000002
+311205,May 1968 events in France,0.3612
+68493,Roe v. Wade,0.01535000000000003
+9696,Erosion,0.0
+6450688,Voices of Animals and Men,0.0
+6675,Conservatism,0.0776
+44177021,Decades (TV network),0.6249
+44810502,Shift (MSNBC),0.6249
+44719,Judge,0.5232
+25009,Privacy,-0.0386
+18978770,Birth control,-0.0772
+185041,MSN,-0.5267
+24462958,Risk,-0.27625
+35925403,Appeal,-0.5267
+1429223,The Des Moines Register,-0.5267
+1057428,Typographical error,-0.5267
+147301,Nancy Pelosi,0.17
+1718235,This Week (ABC TV series),0.0
+31979,United States Capitol,0.42115
+2222928,Witness impeachment,0.07489999999999998
+19468510,United States House of Representatives,-0.05135
+28081613,Calling On,-0.3818
+70135,Twenty-fifth Amendment to the United States Constitution,-0.1909
+183749,Duty,-0.2818
+601402,Resolution (law),0.0
+261703,Caucus,0.0
+638313,Supermajority,0.0
+6207,Electric current,0.08274999999999996
+30400,Torque,-0.3612
+3669631,Affect (philosophy),0.0
+161744,Interpersonal relationship,0.0
+26258076,Term (time),0.0
+5734,Consequentialism,-0.148
+62517,Governor of California,-0.30632499999999996
+20550772,Evidence,-0.030149999999999982
+276167,Wrongdoing,-0.4215
+96637,Confidence trick,-0.4215
+28730792,News conference,0.38915
+24002846,French ship Assuré (1667),0.8573
+210031,Separate but equal,0.8573
+28561,Separation of powers,0.8573
+253074,Governor of Kentucky,0.8573
+46875774,Taking a Stand,0.3612
+25084,Public speaking,-0.6757
+526101,Major (academic),-0.6757
+2298740,Conservatism in the United States,-0.727
+365785,Bogeyman,-0.6757
+23913718,Public school (United Kingdom),-0.6757
+205075,Teacher,-0.6757
+36808,Heart,-0.6757
+5360793,Open carry in the United States,-0.6757
+11966,Firearm,-0.6757
+560252,Progressive Era,-0.872
+15775275,State governments of the United States,-0.872
+5743991,Mineral rights,-0.872
+382165,Electoral fraud,-0.872
+1077353,Curiosity,0.3182
+37080,Thought,0.1591
+603325,Topic and comment,0.3182
+613629,Spin (magazine),0.4404
+371301,Electronic voting,0.0
+1169763,Base (politics),0.0
+240468,National security,-0.0258
+1171266,All caps,0.2023
+2528975,B-boying,0.2023
+2354206,Strongman (strength athlete),0.1531
+229060,Old age,-0.3612
+17349325,United States Marine Corps,-0.7783
+11121,Fox News Channel,-0.7783
+1640986,Public university,-0.3089
+31922,University of California Berkeley,-0.3089
+239038,Construction,-0.39225
+9988187,Twitter,-0.34
+10263,Executive (government),0.38303333333333334
+505450,Wedge issue,0.0
+206583,Suffering,0.3224
+8072,Disease,0.3224
+8221,Death,-0.74755
+806023,Sympathy,0.3612
+4157940,History of the United States Republican Party,0.1027
+47298399,So There (Ben Folds album),-0.2173
+25755,Republicanism,0.0386
+37643953,Democratic Party presidential primaries, 2016,0.0
+31756,United States Congress,0.13820000000000002
+24110,President,0.5719
+326350,Republican National Committee,0.7506
+9457,Election,0.1698111111111111
+47768999,Ready to Die,-0.34
+35760526,The New Normal (TV series),-0.1027
+1879562,Will Truman,0.5106
+2340554,Epidemiology of HIV/AIDS,0.5719
+61193,Externality,0.8074
+288593,Pardon,0.11516666666666665
+870351,Sentence (law),-0.24735
+1723963,Roger Stone,-0.5719
+1123386,Political consulting,-0.5719
+146762,Conviction,-0.5262874999999999
+11293,Felony,-0.5719
+19008450,Prison,-0.22506666666666666
+25391,Russia,0.0
+20347,Meaning of life,0.4118
+2533750,Ingroups and outgroups,0.8402
+22063827,The Power Is On,0.2335
+429249,Swing state,0.22555
+198570,Oil well,0.15173333333333328
+1130657,Red states and blue states,0.5680666666666666
+1050340,Election Day (United States),0.0
+930136,Source (journalism),0.1779
+1625889,Single Swing,0.1779
+22199,Ohio,0.1779
+29810,Texas,0.0
+185427,Function (mathematics),0.26335
+41932,Accuracy and precision,0.5267
+85533,Electoral College (United States),0.5267
+26874,Metric prefix,0.5994
+56522,Right-wing politics,0.5994
+5664,Consciousness,0.5789
+16260072,24-hour news cycle,0.5789
+1082354,Moves (magazine),0.5789
+18963870,Literature,-0.3612
+18831,Mathematics,0.34
+11903050,To the Point,0.4357
+31591,Time travel,0.4357
+31655,Second Amendment to the United States Constitution,-0.13030000000000003
+18130,Louisiana,-0.0258
+19977,Maine,-0.0258
+21650,North Carolina,-0.0258
+624,Alaska,-0.0258
+31716,Utah,-0.0258
+21647,Nebraska,-0.0258
+23332,Pennsylvania,0.41574999999999995
+26873,Second,-0.0258
+1146288,Loyalist (American Revolution),-0.0258
+15849254,Affirmation in law,-0.0258
+77799,C-SPAN,0.42885
+503193,Planned Parenthood,-0.2559
+19312,Meme,-0.0516
+38705343,United States elections, 2016,0.5719
+31737,Supreme Court of the United States,0.24993333333333334
+17541,Lawyer,-0.24922500000000003
+43980,Reading Berkshire,-0.2732
+32113,Conservative Party (UK),-0.2732
+425514,Art theft,-0.44510000000000005
+2172378,Independent politician,-0.2732
+183895,Presidency of George W. Bush,0.005099999999999993
+39871580,One America News Network,-0.7783
+984155,Mike Read,0.0
+3221417,Cause of action,0.0
+294894,Forbes,0.0176
+18546203,Stimulus (psychology),0.0176
+23416874,Sense,0.0176
+5530,Conspiracy theory,0.0176
+56231,Governor,0.0772
+42446,Reason,-0.17215
+251573,Can (band),0.0
+5333723,If (band),-0.1901
+29066482,Voting system,-0.1901
+66220,Political corruption,-0.1901
+24494230,Military coups in Pakistan,-0.1901
+1442446,Elections in Pakistan,-0.1901
+3101959,Ticking time bomb scenario,-0.7987
+1053290,Time bomb,-0.7987
+1050798,Memorandum,-0.3182
+170549,Fallout (series),0.0
+37988,National Guard of the United States,0.0
+18618239,U.S. state,0.0
+5399,Colorado,0.0
+1930,Arkansas,0.0
+38794736,State socialism,0.0
+37297,Criminal procedure,-0.4215
+170638,Arrest,-0.4215
+1703155,Alien (law),-0.4215
+703464,Rob Portman,-0.5574
+37673268,United States Senate election in North Carolina, 2014,-0.5574
+234226,Traffic congestion,-0.1027
+44421,Legislature,0.5099
+1334301,Chambers of parliament,0.6798
+630528,Swing vote,0.6798
+31600,Time (magazine),0.13754999999999995
+41053306,Landslide victory,0.71885
+3058522,Race and ethnicity in the United States,0.8658
+16205143,Maricopa County Sheriff's Office,0.2263
+89516,Sheriff,0.2263
+22483,Optics,0.0
+587618,Public administration,0.0
+79432,Will (philosophy),0.2202
+16366,Jurisprudence,0.0
+7124412,Illegal immigration,-0.8779
+25614,Race (human categorization),-0.57555
+153237,Court order,-0.9432
+70235,United States district court,-0.9432
+26131,Racial profiling,-0.9432
+335068,John Cornyn,0.0
+2583074,Wish Me Luck,0.0
+627358,William R. Day,0.0
+342014,Demurrer,0.0
+38534,Adoption,-0.0196
+44509739,United States Senate elections, 2020,-0.0196
+286369,Assassination of John F. Kennedy,0.0772
+156644,Die Another Day,0.5719
+501244,United States Intelligence Community,0.28595
+54173,Pulp Fiction,0.4588
+14965069,Doubt (2008 film),0.4588
+249433,Political parties in the United States,0.4588
+465183,Educational assessment,0.0
+13610,Heraldry,0.4404
+369993,Line (heraldry),0.4019
+26779,Soviet Union,0.4019
+39046352,Can We,0.0
+44235929,Donbass general elections, 2014,0.0
+11060668,Ukrainian parliamentary election, 2007,-0.3089
+49442238,Merrick Garland Supreme Court nomination,0.4588
+509001,Republican National Convention,-0.0258
+2925542,High school dropouts,-0.2732
+163115,Interest rate,0.6369
+32653,Vaccine,0.10623333333333335
+25,Autism,0.07698000000000002
+1742315,Vaccine controversies,-0.4404
+30130023,The Vaccines,-0.4404
+712694,Push-up,0.3818
+26700,Science,0.3818
+18957,Medicine,0.3818
+3296243,Vaccination schedule,-0.3182
+196327,The Forward,0.0
+29113700,Autism spectrum,0.0
+47418,Group psychotherapy,0.0
+8695082,Health policy,0.0
+261925,Health care,0.0
+92357,Military,0.0
+2726862,Fox Major League Baseball,0.6705
+4379,Book of Revelation,0.5118
+2271992,Help (Buffy the Vampire Slayer),0.5118
+2271998,Him (Buffy the Vampire Slayer),0.5118
+44962964,Baseball Hall of Fame balloting, 2016,0.5118
+17881122,Barack Obama presidential campaign, 2008,0.5118
+39587781,United States presidential election 2016 timeline,-0.0772
+371187,National Enquirer,0.0
+44582614,Bernie Sanders presidential campaign, 2016,0.0
+2500271,Ted Cruz,0.0
+694155,Character assassination,0.0
+43693674,Iranian legislative election, 2016,-0.5719
+2739671,Candidate of Sciences,0.42115
+7271,Communist Party of the Soviet Union,0.4019
+26042,Revelation,0.0
+3434750,United States,0.1779
+406859,United States presidential election, 2008,-0.5267
+2434267,Allegation,-0.4300999999999999
+725182,Official,0.0034750000000000336
+12160028,Above the Law (blog),-0.21075
+6509278,Trump,0.765
+3417508,Glossary of contract bridge terms,0.765
+38539,Reality television,0.01100000000000001
+6814294,Listen (Beyoncé song),0.8577
+1890505,The Huffington Post,0.0
+382507,Office,-0.3818
+5114012,Prior,-0.3818
+412990,Deportation,-0.5457
+74746,Act of Congress,-0.7845
+21900706,Attorney at law,0.0
+4415233,Opening statement,0.0
+425202,Brief (law),0.0
+314201,High Court of Australia,0.0
+834368,United States federal judge,-0.9476
+21832534,Absolute immunity,-0.9476
+1636627,Federal judiciary of the United States,0.3089
+59564,Judiciary,0.3089
+945646,Above the Law (group),-0.2924
+37071,Civil and political rights,-0.7096
+1584306,Legal remedy,-0.7096
+350567,Mitch McConnell,-0.5106
+168219,Criminal justice,0.0
+3470592,Removal jurisdiction,-0.3818
+264467,Braxton Bragg,0.6249
+200115,Trajectory,0.3612
+75696,Testimony,0.1806
+255991,Narrative,0.3612
+294813,Internet forum,0.0
+159031,Cover version,0.0
+50956,Witness,-0.1045
+645042,New York City,0.0
+871552,Presidency of Ronald Reagan,0.4404
+3567228,For the Future,0.0352
+47511951,Make America Great Again,0.0
+21076839,Web page,0.0
+15559466,Outlook.com,0.0
+1368591,Interview (magazine),-0.296
+33183,Woman,-0.296
+145439,Women's rights,-0.28459999999999996
+33583,World Health Organization,-0.296
+2633667,Article (publishing),0.4404
+18486,Law enforcement,0.4404
+26364,Roman law,0.4404
+918245,Swedish neutrality,-0.2732
+19333662,Human trafficking,0.3892
+9014,Developmental psychology,0.0
+867877,Share (finance),0.7239
+405981,Net worth,0.7239
+1136363,1,000,000,000,0.7239
+6365636,Benchmark (crude oil),0.7239
+211295,Price,0.08343333333333332
+228569,Conversation,0.0
+12861,Governor of New York,0.0
+428320,United States Court of Appeals for the Second Circuit,0.0
+1143897,George W. Bush's second term as President of the United States,0.0
+5195347,Second Spanish Republic,0.3612
+2313685,Political endorsement,0.3612
+40571,United States presidential election, 1984,0.5719
+181322,Culture war,-0.4019
+1685851,If (Janet Jackson song),0.3951
+4427143,You (Janet Jackson song),0.3951
+314993,Employment,0.3951
+610452,Salary,0.3951
+69415,Economic growth,0.3951
+30297,Tax,0.3951
+5021410,Double Whammy (novel),0.3951
+22131,Natural gas,-0.3075
+234798,Grief,-0.743
+33158,War,-0.8216000000000001
+14653,Iran,-0.8562000000000001
+31741,Unemployment,-0.7506
+21350772,Greenhouse gas,0.0
+38079987,In Your Words,-0.6771
+18993869,Gas,0.0
+2437974,Food industry,0.0
+50073,Chemical warfare,-0.8687
+580039,Good (economics),-0.8687
+32022,Economy of the United States,-0.985
+70197,Demography of the United States,-0.985
+4717,Bob Jones University,-0.985
+4745,Black people,-0.985
+38289,Depression (economics),-0.985
+6639133,Economy,-0.985
+4894490,North Korean famine,-0.985
+2347513,Republic of Ireland–United Kingdom border,-0.985
+8032596,Gasoline and diesel usage and pricing,0.0
+233404,Foreign policy,-0.985
+10062100,Subprime mortgage crisis,-0.985
+30636,Terrorism,-0.6082666666666667
+1921,Al-Qaeda,-0.985
+43506,Axis of evil,-0.985
+26316,Racial segregation,-0.9477
+992991,Vowel length,-0.8271
+26847,Socialism,-0.9477
+11054,Fascism,-0.8613999999999999
+5142662,Italian Fascism,-0.8271
+59399,Lumber,0.0
+234555,We (novel),0.128
+19354372,Gone (novel series),0.128
+23617,Pump,0.128
+7832,Complete metric space,0.128
+184695,Arson,0.0559
+12899,Gestapo,0.0559
+1115992,Yugoslav Partisans,0.0559
+191305,Mortality rate,-0.8957
+66468,Demographics of Afghanistan,-0.7677
+5058690,September 11 attacks,-0.8957
+5710507,Pornography,-0.6124
+14546175,WHATS'On (Software),-0.6124
+161292,Bob Hope,-0.6124
+3138422,Charles Hicks,-0.6124
+46789,Jean-Baptiste Say,-0.6124
+20583,Misdemeanor,-0.6124
+3406102,Conspiracy (criminal),-0.6124
+26783,Statute,-0.6124

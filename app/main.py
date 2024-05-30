@@ -17,5 +17,5 @@ nlp = spacy.load("en_core_web_sm")
 with app.app_context():
     init_routes(app, db)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=False)

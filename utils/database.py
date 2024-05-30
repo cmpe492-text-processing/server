@@ -8,7 +8,8 @@ import json
 class DatabaseManager:
     def __init__(self):
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        env_path = os.path.join(base_dir, '.env')
+        print("basedir", base_dir)
+        env_path = os.path.join(base_dir, ".env")
         load_dotenv(env_path)
         self.connection = None
         self.create_connection()
@@ -16,7 +17,7 @@ class DatabaseManager:
     def create_connection(self):
         try:
             # Connect to the database using DATABASE_URL environment variable
-            connection = psycopg2.connect(os.getenv('DATABASE_URL'), sslmode='require')
+            connection = psycopg2.connect(os.getenv("DATABASE_URL"), sslmode="require")
             self.connection = connection
             print("Connection to PostgreSQL DB successful")
         except OperationalError as e:
@@ -45,7 +46,7 @@ class DatabaseManager:
 
             for corpus in corpuses:
                 json_data = json.dumps(corpus, indent=0)
-                values = (corpus['platform'], corpus['id'], json_data)
+                values = (corpus["platform"], corpus["id"], json_data)
                 try:
                     cursor.execute(query, values)
                     print("Query executed successfully")
@@ -65,8 +66,18 @@ class DatabaseManager:
             """
 
             for post in posts:
-                values = (post.id, post.author_id, post.created_utc, post.name, post.permalink, post.score,
-                          post.selftext, post.subreddit, post.title, post.upvote_ratio)
+                values = (
+                    post.id,
+                    post.author_id,
+                    post.created_utc,
+                    post.name,
+                    post.permalink,
+                    post.score,
+                    post.selftext,
+                    post.subreddit,
+                    post.title,
+                    post.upvote_ratio,
+                )
                 try:
                     cursor.execute(query, values)
                     print("Query executed successfully")
@@ -76,7 +87,7 @@ class DatabaseManager:
             self.connection.commit()
             cursor.close()
 
-    def close_connection(self, debug = True):
+    def close_connection(self, debug=True):
         if self.connection is not None:
             self.connection.close()
             if debug:

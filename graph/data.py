@@ -11,6 +11,7 @@ DEBUG = True
 load_dotenv("../../.env")
 
 result_path = os.getenv("PROJECT_X_ROOT") + "/resources/data/graph/"
+
 raw_path = os.getenv("PROJECT_X_ROOT") + "/resources/data/db_dumps/corpus.json"
 raw_data: list[dict] = []
 
@@ -30,7 +31,7 @@ entity_titles: dict[int, str] = {}
 
 def load_data():
     global raw_data, raw_path
-    with open(raw_path, 'r') as f:
+    with open(raw_path, "r") as f:
         raw_data = json.load(f)
 
 
@@ -120,7 +121,11 @@ def main_export_entity(entity_id):
     load_data()
 
     # filter raw data to posts that contain the entity
-    raw_data = [post for post in raw_data if entity_id in [entity["wiki_id"] for entity in post.get("entities", [])]]
+    raw_data = [
+        post
+        for post in raw_data
+        if entity_id in [entity["wiki_id"] for entity in post.get("entities", [])]
+    ]
 
     print("\033[1mProcessing data...\033[0m")
     process_data()
@@ -131,39 +136,61 @@ def main_export_entity(entity_id):
     print("\033[1mDone!\033[0m")
 
 
-def export(entity_id: int = None,
-           node_limit: int = None,
-           edge_limit: int = None,
-           relatedness_threshold: float = None,
-           sentiment_threshold: float = None):
+def export(
+    entity_id: int = None,
+    node_limit: int = None,
+    edge_limit: int = None,
+    relatedness_threshold: float = None,
+    sentiment_threshold: float = None,
+):
     global raw_data, occurrences, relatedness, sentiment, entity_titles
     print("\033[1mStarting...\033[0m")
     load_data()
 
     if entity_id:
-        raw_data = [post for post in raw_data if
-                    entity_id in [entity["wiki_id"] for entity in post.get("entities", [])]]
+        raw_data = [
+            post
+            for post in raw_data
+            if entity_id in [entity["wiki_id"] for entity in post.get("entities", [])]
+        ]
 
     print("\033[1mProcessing data...\033[0m")
     process_data()
 
     if sentiment_threshold:
-        sentiment = {k: v for k, v in sentiment.items() if
-                     any([abs(score.get("compound", 0)) >= sentiment_threshold for score in v])}
+        sentiment = {
+            k: v
+            for k, v in sentiment.items()
+            if any(
+                [abs(score.get("compound", 0)) >= sentiment_threshold for score in v]
+            )
+        }
         entity_titles = {k: v for k, v in entity_titles.items() if k in sentiment}
 
     if relatedness_threshold:
-        relatedness = {k: v for k, v in relatedness.items() if v >= relatedness_threshold}
+        relatedness = {
+            k: v for k, v in relatedness.items() if v >= relatedness_threshold
+        }
         occurrences = {k: v for k, v in occurrences.items() if k in relatedness}
 
     if node_limit:
-        sentiment = {k: v for k, v in
-                     sorted(sentiment.items(), key=lambda x: sum([score.get("compound", 0) for score in x[1]]),
-                            reverse=True)[:node_limit]}
+        sentiment = {
+            k: v
+            for k, v in sorted(
+                sentiment.items(),
+                key=lambda x: sum([score.get("compound", 0) for score in x[1]]),
+                reverse=True,
+            )[:node_limit]
+        }
         entity_titles = {k: v for k, v in entity_titles.items() if k in sentiment}
 
     if edge_limit:
-        occurrences = {k: v for k, v in sorted(occurrences.items(), key=lambda x: x[1], reverse=True)[:edge_limit]}
+        occurrences = {
+            k: v
+            for k, v in sorted(occurrences.items(), key=lambda x: x[1], reverse=True)[
+                :edge_limit
+            ]
+        }
         relatedness = {k: v for k, v in relatedness.items() if k in occurrences}
 
     print("\033[1mExporting graph...\033[0m")

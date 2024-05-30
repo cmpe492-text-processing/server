@@ -112,7 +112,7 @@ class FeatureExtractor:
 
         result = self.process_data(data)
         print("processed the data", strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-        self.exporter(result, self.wiki_id, "feature_extracted_data")
+        # self.exporter(result, self.wiki_id, "feature_extracted_data")
         most_occurred_x_entities = self.get_most_occurred_entities(result, 10)
         main_entity = self.get_main_entity(result)
 
