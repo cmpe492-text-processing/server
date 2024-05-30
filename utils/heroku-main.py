@@ -12,7 +12,8 @@ def main():
     python_subreddits = ['Python', 'PythonProjects2', 'PythonLearning', 'learnpython']
     c_subreddits = ['C_Programming', 'cpp', 'csharp', 'Cplusplus']
     programming_subreddits = ['learnprogramming', 'AskProgramming', 'programming']
-    all_subreddits = (politics_subreddits + football_subreddits + python_subreddits
+    other_subreddits = ['AskReddit', 'todayilearned', 'news', 'nottheonion', 'IAmA', 'worldnews', 'science', 'changemyview', 'The_Donald', 'askscience', 'copypasta', 'Turkey', 'Yatirim', 'ankara', 'kopyamakarna', 'ArsivUnutmaz', 'trpolitics', 'tibukandtoker']
+    all_subreddits = (other_subreddits + politics_subreddits + football_subreddits + python_subreddits
                       + c_subreddits + programming_subreddits)
 
     for subreddit in all_subreddits:
