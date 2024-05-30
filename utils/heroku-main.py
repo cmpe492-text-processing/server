@@ -7,6 +7,8 @@ from database import DatabaseManager
 def main():
     reddit = Reddit()
     database_manager = DatabaseManager()
+    extractor = CorpusExtractor("resources/data/db_dumps/")
+    extractor.run_extraction()
     politics_subreddits = ["trump", "politics", "elections", "democrats", "republican", "PoliticalDiscussion"]
     football_subreddits = ['galatasaray', 'soccer', 'superlig', 'FenerbahceSK']
     python_subreddits = ['Python', 'PythonProjects2', 'PythonLearning', 'learnpython']
@@ -32,8 +34,6 @@ def main():
         database_manager.insert_posts(post_list)
         database_manager.insert_corpuses(corpus_list)
     
-    extractor = CorpusExtractor("resources/data/db_dumps/")
-    extractor.run_extraction()
 
 
 if __name__ == "__main__":
