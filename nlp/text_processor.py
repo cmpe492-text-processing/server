@@ -1,6 +1,5 @@
 import nltk
 
-nltk.download("vader_lexicon")
 from nltk.sentiment import SentimentIntensityAnalyzer
 import spacy
 import re
@@ -10,15 +9,15 @@ class TextProcessor:
 
     def __init__(self):
         self._nltk = nltk
-        self._nltk.download("punkt", quiet=True)
-        self._nltk.download("averaged_perceptron_tagger", quiet=True)
-        self._nltk.download("maxent_ne_chunker", quiet=True)
-        self._nltk.download("words", quiet=True)
-        self._nltk.download("stopwords", quiet=True)
-        self._nltk.download("wordnet", quiet=True)
-        self._nltk.download("vader_lexicon", quiet=True)
-        self._nltk.download("omw", quiet=True)
-        self._nltk.download("universal_tagset", quiet=True)
+        # self._nltk.download("punkt", quiet=True)
+        # self._nltk.download("averaged_perceptron_tagger", quiet=True)
+        # self._nltk.download("maxent_ne_chunker", quiet=True)
+        # self._nltk.download("words", quiet=True)
+        # self._nltk.download("stopwords", quiet=True)
+        # self._nltk.download("wordnet", quiet=True)
+        # self._nltk.download("vader_lexicon", quiet=True)
+        # self._nltk.download("omw", quiet=True)
+        # self._nltk.download("universal_tagset", quiet=True)
         self._nlp = spacy.load("en_core_web_sm")
         self._link_pattern = r"http\S+"
         self._markdown_link_pattern = r"\[([^\]]+)\]\((http\S+)\)"
