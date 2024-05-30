@@ -16,18 +16,18 @@ if __name__ == "__main__":
             f.write("entity1,entity2,edge_thickness,edge_weight\n")
     """
 
-    with open(os.getenv("PROJECT_X_ROOT") + "/resources/data/graph/4848272_nodes.csv") as f:
+    with open("resources/data/graph/4848272_nodes.csv") as f:
         for line in f:
-            if line.startswith('wiki_id'):
+            if line.startswith("wiki_id"):
                 continue
-            line = line.strip().split(',')
+            line = line.strip().split(",")
             network.add_node(int(line[0]), line[1], float(line[2]))
 
-    with open(os.getenv("PROJECT_X_ROOT") + "/resources/data/graph/4848272_edges.csv") as f:
+    with open("resources/data/graph/4848272_edges.csv") as f:
         for line in f:
-            if line.startswith('entity1'):
+            if line.startswith("entity1"):
                 continue
-            line = line.strip().split(',')
+            line = line.strip().split(",")
             network.add_edge(int(line[0]), int(line[1]), int(line[2]), float(line[3]))
 
     print(network.degree_centrality())

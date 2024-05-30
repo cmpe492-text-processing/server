@@ -8,11 +8,9 @@ from utils.tagme_manager import TagmeManager
 
 DEBUG = True
 
-load_dotenv("../../.env")
+load_dotenv(".env")
 
-result_path = os.getenv("PROJECT_X_ROOT") + "/resources/data/graph/"
-
-raw_path = os.getenv("PROJECT_X_ROOT") + "/resources/data/db_dumps/corpus.json"
+raw_path = os.path.join("resources", "data", "db_dumps", "corpus.json")
 raw_data: list[dict] = []
 
 # (entity1, entity2) -> occurrences

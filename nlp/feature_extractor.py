@@ -13,9 +13,7 @@ class FeatureExtractor:
     def __init__(self, wiki_id):
         load_dotenv("../../.env")
         self.wiki_id = wiki_id
-        self.db_dump_filepath = (
-            os.getenv("PROJECT_X_ROOT") + "/resources/data/db_dumps/corpus.json"
-        )
+        self.db_dump_filepath = "resources/data/db_dumps/corpus.json"
 
     @staticmethod
     def read_json_file(filepath):
@@ -25,9 +23,7 @@ class FeatureExtractor:
 
     @staticmethod
     def exporter(posts, center_entity_wiki_id, directory):
-        direc = os.path.join(
-            os.getenv("PROJECT_X_ROOT"), "resources/data/feature_extracted_data"
-        )
+        direc = os.path.join("resources/data/feature_extracted_data")
         if not os.path.exists(direc):
             os.makedirs(
                 direc
@@ -112,7 +108,7 @@ class FeatureExtractor:
 
         result = self.process_data(data)
         print("processed the data", strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-        # self.exporter(result, self.wiki_id, "feature_extracted_data")
+        self.exporter(result, self.wiki_id, "feature_extracted_data")
         most_occurred_x_entities = self.get_most_occurred_entities(result, 10)
         main_entity = self.get_main_entity(result)
 
