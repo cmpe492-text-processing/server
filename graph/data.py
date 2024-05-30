@@ -10,7 +10,7 @@ DEBUG = True
 
 load_dotenv(".env")
 
-raw_path = os.path.join("resources", "data", "db_dumps", "corpus.json")
+raw_path = os.path.join("resources", "data", "db_dumps", "db_dump.json")
 raw_data: list[dict] = []
 
 # (entity1, entity2) -> occurrences

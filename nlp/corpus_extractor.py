@@ -28,7 +28,5 @@ class CorpusExtractor:
 
 
 if __name__ == "__main__":
-    # load env
-    load_dotenv("../../.env")
     extractor = CorpusExtractor("resources/data/db_dumps/")
     extractor.run_extraction()

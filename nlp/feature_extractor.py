@@ -2,8 +2,6 @@ import json
 
 from time import gmtime, strftime
 import os
-
-import requests
 from dotenv import load_dotenv
 from utils.database import DatabaseManager
 
@@ -11,9 +9,9 @@ from utils.database import DatabaseManager
 class FeatureExtractor:
 
     def __init__(self, wiki_id):
-        load_dotenv("../../.env")
+        load_dotenv(".env")
         self.wiki_id = wiki_id
-        self.db_dump_filepath = "resources/data/db_dumps/corpus.json"
+        self.db_dump_filepath = "resources/data/db_dumps/db_dump.json"
 
     @staticmethod
     def read_json_file(filepath):

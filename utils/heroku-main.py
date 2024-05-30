@@ -1,3 +1,4 @@
+from nlp.corpus_extractor import CorpusExtractor
 from nlp.corpus_generator import GenerateCorpus, Platform
 from reddit import Reddit, RedditPost
 from database import DatabaseManager
@@ -29,6 +30,9 @@ def main():
 
         database_manager.insert_posts(post_list)
         database_manager.insert_corpuses(corpus_list)
+    
+    extractor = CorpusExtractor("resources/data/db_dumps/")
+    extractor.run_extraction()
 
 
 if __name__ == "__main__":
