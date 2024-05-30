@@ -2,6 +2,7 @@ from nlp.corpus_extractor import CorpusExtractor
 from nlp.corpus_generator import GenerateCorpus, Platform
 from reddit import Reddit, RedditPost
 from database import DatabaseManager
+import random
 
 
 def main():
@@ -17,6 +18,7 @@ def main():
     other_subreddits = ['AskReddit', 'todayilearned', 'news', 'nottheonion', 'IAmA', 'worldnews', 'science', 'changemyview', 'The_Donald', 'askscience', 'copypasta', 'Turkey', 'Yatirim', 'ankara', 'kopyamakarna', 'ArsivUnutmaz', 'trpolitics', 'tibukandtoker']
     all_subreddits = (other_subreddits + politics_subreddits + football_subreddits + python_subreddits
                       + c_subreddits + programming_subreddits)
+    random.shuffle(all_subreddits)
 
     for subreddit in all_subreddits:
         post_list: list[RedditPost] = reddit.get_new_posts(subreddit, limit=10)
