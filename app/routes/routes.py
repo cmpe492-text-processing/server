@@ -1,6 +1,7 @@
 from spacy import displacy
 from flask import request, render_template, jsonify
 import spacy
+from app.services.graph import get_graph
 from app.services.tagging import get_basic_info, get_wikidata_info
 from nlp.feature_extractor import FeatureExtractor
 
