@@ -27,7 +27,10 @@ def main():
         for post in post_list:
             corpus_generator = GenerateCorpus(Platform.REDDIT, subreddit, post.id, post.title, post.selftext)
             corpus = corpus_generator.generate_corpus()
-            corpus_list.append(corpus)
+            if (corpus != None):
+                corpus_list.append(corpus)
+            else:
+                print("Empty text, skipped this post for creating corpus")
 
         print(
             f"Inserting {len(post_list)} posts and {len(corpus_list)} "

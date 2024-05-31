@@ -26,6 +26,8 @@ class TextProcessor:
         txt = self.lowercase(txt)
         txt = self.replace_links(txt)
         txt = self.remove_punctuation(txt)
+        txt = txt.replace("\\", " ").replace("[", " ").replace("]", " ")
+        txt = txt.strip()
         return txt
 
     @staticmethod
