@@ -1,5 +1,5 @@
 import json
-
+import math
 from time import gmtime, strftime
 import os
 from dotenv import load_dotenv
@@ -77,10 +77,27 @@ class FeatureExtractor:
                         )
         return posts
 
-    def get_most_occurred_entities(self, data, n):
-        data = [entity for entity in data if entity["wiki_id"] != self.wiki_id]
-        data.sort(key=lambda x: x["n"], reverse=True)
-        return data[:n]
+
+    def get_most_occurred_entities(self, page_number):
+        raw_data = self.read_json_file(self.db_dump_filepath)
+        
+        if not isinstance(raw_data, list):
+            raise ValueError("Expected a list of dictionaries in JSON file.")
+        data = self.process_data(self.get_related_corpuses(
+            self.wiki_id, raw_data
+        ))
+        
+        result = sorted(data, key=lambda x: x["n"], reverse=True)
+        page_number = int(page_number)
+        start_index = page_number * 10
+        end_index = min((page_number + 1) * 10, len(result))
+
+        filtered_result = result[start_index:end_index]
+
+        max_page_number = math.ceil(len(result) / 10) - 1
+
+        return filtered_result, max_page_number
+
 
     def get_main_entity(self, data):
         # Find the entity that has the wiki id of the center entity
@@ -107,10 +124,9 @@ class FeatureExtractor:
         result = self.process_data(data)
         print("processed the data", strftime("%Y-%m-%d %H:%M:%S", gmtime()))
         self.exporter(result, self.wiki_id, "feature_extracted_data")
-        most_occurred_x_entities = self.get_most_occurred_entities(result, 10)
         main_entity = self.get_main_entity(result)
 
-        return result, most_occurred_x_entities, main_entity
+        return result, main_entity
 
     @staticmethod
     def process_data(data):
