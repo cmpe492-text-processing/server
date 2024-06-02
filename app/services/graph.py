@@ -182,9 +182,16 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
         if G.nodes[node]['sentiment'] == 0:
             neighbors = list(G.neighbors(node))
             if neighbors:
-                non_zero_sentiments = [G.nodes[n]['sentiment'] for n in neighbors if G.nodes[n]['sentiment'] != 0]
-                if non_zero_sentiments:
-                    G.nodes[node]['sentiment'] = np.mean(non_zero_sentiments)
+                weighted_sum = 0
+                total_weight = 0
+                for neighbor in neighbors:
+                    sentiment = G.nodes[neighbor]['sentiment']
+                    if sentiment != 0:
+                        weight = G[node][neighbor]['weight']
+                        weighted_sum += sentiment * weight
+                        total_weight += weight
+                if total_weight > 0:
+                    G.nodes[node]['sentiment'] = weighted_sum / total_weight
 
     timestamp6 = time.time()
 
