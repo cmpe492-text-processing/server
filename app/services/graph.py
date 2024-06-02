@@ -52,10 +52,10 @@ def sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max):
     # Scale to the range [0.1, 1]
     scaled_value = 0.1 + 0.9 * mapped_value
 
-    return scaled_value
+    return 10 * scaled_value
 
 
-def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multiplier=1.0):
+def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multiplier=1.5):
     timestamp1 = time.time()
 
     corpuses = fetch_corpuses_by_entity_id(wiki_id, db)
@@ -154,7 +154,7 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
             "source": source,
             "target": target,
             "thickness": int(
-                10 * sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max)
+                sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max)
             ),
             "weight": float(relatedness.get(
                 (source, target), 0)
@@ -167,7 +167,8 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
         G.add_node(node.id, name=node.name, sentiment=node.sentiment.compound / node.count)
 
     for link in links:
-        G.add_edge(link["source"], link["target"], thickness=link["thickness"], weight=link["weight"])
+        if link["weight"] > 0 or link["thickness"] > 1.1:
+            G.add_edge(link["source"], link["target"], thickness=link["thickness"], weight=link["weight"])
 
     main_component = None
     for component in nx.connected_components(G):
