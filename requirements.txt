@@ -9,9 +9,15 @@ spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 tagme @ git+https://github.com/alabeybahri/tagme-python.git@aceca09c3cf0aa5eb1a90d8f02472230e57a8a3e
 python-dotenv==1.0.1
-psycopg2
+psycopg2~=2.9.9
 gunicorn
-numba
+numba~=0.59.1
 matplotlib
-scipy
+scipy~=1.13.1
 flask-caching
+networkx
+numpy~=1.26.4
+SQLAlchemy~=2.0.30
+tagme~=0.1.3
+prawcore~=2.4.0
+requests~=2.32.3

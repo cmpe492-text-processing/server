@@ -2,12 +2,15 @@ from dataclasses import dataclass
 
 from utils.tagme_manager import TagmeManager
 from sqlalchemy import text
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 from itertools import combinations
 from numba import jit
-from scipy.sparse import csr_matrix, lil_matrix
+from scipy.sparse import lil_matrix
 import numpy as np
 import time
+import networkx as nx
+
+
 
 @dataclass
 class Sentiment:
@@ -53,17 +56,14 @@ def sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max):
 
 
 def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multiplier=1.0):
-
     timestamp1 = time.time()
 
     corpuses = fetch_corpuses_by_entity_id(wiki_id, db)
 
     timestamp2 = time.time()
 
-
     entityid_to_index = {}
     index_to_entity = []
-
 
     # Assign indices to entities and store all entity fields
     for corp in corpuses:
@@ -161,10 +161,30 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
             )
         })
 
-    okay = set()
+    G = nx.Graph()
+
+    for node in nodes:
+        G.add_node(node.id, name=node.name, sentiment=node.sentiment.compound / node.count)
+
     for link in links:
-        okay.add(link["source"])
-        okay.add(link["target"])
+        G.add_edge(link["source"], link["target"], thickness=link["thickness"], weight=link["weight"])
+
+    main_component = None
+    for component in nx.connected_components(G):
+        if wiki_id in component:
+            main_component = component
+            break
+
+    if main_component is not None:
+        G = G.subgraph(main_component).copy()
+
+    for node in G.nodes:
+        if G.nodes[node]['sentiment'] == 0:
+            neighbors = list(G.neighbors(node))
+            if neighbors:
+                non_zero_sentiments = [G.nodes[n]['sentiment'] for n in neighbors if G.nodes[n]['sentiment'] != 0]
+                if non_zero_sentiments:
+                    G.nodes[node]['sentiment'] = np.mean(non_zero_sentiments)
 
     timestamp6 = time.time()
 
@@ -177,19 +197,22 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
     return {
         "nodes": [
             {
-                "id": node.id,
-                "name": node.name,
-                "sentiment": node.sentiment.compound / node.count,
-                "size": sum(
-                    [
-                        link["thickness"] for link in links
-                        if link["source"] == node.id or link["target"] == node.id
-                    ]
-                )
+                "id": node,
+                "name": G.nodes[node]["name"],
+                "sentiment": round(G.nodes[node]["sentiment"], 3),
+                "size": len(list(G.neighbors(node)))
             }
-            for node in nodes if node.id in okay
+            for node in G.nodes
         ],
-        "links": links
+        "links": [
+            {
+                "source": u,
+                "target": v,
+                "thickness": round(G[u][v]["thickness"], 3),
+                "weight": round(G[u][v]["weight"], 3)
+            }
+            for u, v in G.edges
+        ]
     }
 
 
@@ -269,7 +292,7 @@ def get_graph(wiki_id: int, db, cache):
             nodes.append({
                 "id": int(entity_wiki_id),
                 "name": entity_title,
-                "sentiment": sentiment_score
+                "sentiment": round(sentiment_score, 3)
             })
             okay.add(entity_wiki_id)
 
@@ -277,8 +300,8 @@ def get_graph(wiki_id: int, db, cache):
         {
             "source": key[0],
             "target": key[1],
-            "thickness": int(occurrences[key]),
-            "weight": float(relatedness[key])
+            "thickness": round(float(occurrences[key]), 3),
+            "weight": round(float(relatedness[key]), 3)
         }
         for key in occurrences
         if key[0] in okay and key[1] in okay
