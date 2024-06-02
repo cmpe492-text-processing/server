@@ -42,7 +42,7 @@ def compute_occurrences(temp_occurrences):
     return occ
 
 
-def sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max):
+def sigmoid_mapping_co_occ(co_occ_rr, co_occ_min, co_occ_max):
     # Normalize co_occ_rr to the range [0, 1]
     normalized_rr = (co_occ_rr - co_occ_min) / (co_occ_max - co_occ_min)
 
@@ -52,7 +52,20 @@ def sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max):
     # Scale to the range [0.1, 1]
     scaled_value = 0.1 + 0.9 * mapped_value
 
+    # [1, 10]
     return 10 * scaled_value
+
+def mapping_n_size(n_size, min_n_size, max_n_size):
+    # Normalize n_size to the range [0, 1]
+    normalized_n_size = (n_size - min_n_size) / (max_n_size - min_n_size)
+
+    # apply a linear transformation that is more sensitive to the lower values
+    mapped_value = np.sqrt(normalized_n_size)
+
+    # Scale to the range [3, 10]
+    scaled_value = 3 + 7 * mapped_value
+
+    return  scaled_value
 
 
 def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multiplier=1.0):
@@ -154,7 +167,7 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
             "source": source,
             "target": target,
             "thickness": int(
-                sigmoid_mapping(co_occ_rr, co_occ_min, co_occ_max)
+                sigmoid_mapping_co_occ(co_occ_rr, co_occ_min, co_occ_max)
             ),
             "weight": float(relatedness.get(
                 (source, target), 0)
@@ -194,6 +207,11 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
                 if total_weight > 0:
                     G.nodes[node]['sentiment'] = weighted_sum / total_weight
 
+    min_neighbours = 1
+    max_neighbours = 0
+    for node in G.nodes:
+        max_neighbours = max(max_neighbours, len(list(G.neighbors(node))))
+
     timestamp6 = time.time()
 
     print(f"Time taken for fetch_corpuses_by_entity_id: {timestamp2 - timestamp1}")
@@ -208,7 +226,12 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
                 "id": node,
                 "name": G.nodes[node]["name"],
                 "sentiment": round(G.nodes[node]["sentiment"], 3),
-                "size": len(list(G.neighbors(node)))
+                "size":
+                    mapping_n_size(
+                        len(list(G.neighbors(node))),
+                        min_neighbours,
+                        max_neighbours
+                    )
             }
             for node in G.nodes
         ],
