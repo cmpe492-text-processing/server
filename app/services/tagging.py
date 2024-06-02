@@ -2,13 +2,14 @@ from tagme import Annotation, annotate
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 from utils.tagme_manager import TagmeManager
+from sqlalchemy import text
 
 
-def get_basic_info(text: str) -> dict:
+def get_basic_info(txt: str, ip, db) -> dict:
     """
     Extracts the entities in the given text. Does basic sentiment analysis for the whole text.
 
-    :param text:    Input String
+    :param txt:    Input String
     :return:        {
                         text: str,
                         entities: {
@@ -28,9 +29,9 @@ def get_basic_info(text: str) -> dict:
                             }
                     }
     """
-    text = text.strip()
+    txt = txt.strip()
     entities: list[dict] = []
-    annotations: list[Annotation] = annotate(text).get_annotations(0.15)
+    annotations: list[Annotation] = annotate(txt).get_annotations(0.15)
     for annotation in annotations:
         entity = {
             "name": annotation.entity_title,
@@ -43,13 +44,14 @@ def get_basic_info(text: str) -> dict:
         entities.append(entity)
 
     sia = SentimentIntensityAnalyzer()
-    scores = sia.polarity_scores(text)
+    scores = sia.polarity_scores(txt)
 
-    return {"text": text, "entities": entities, "scores": scores}
+    save_search(txt, ip, db)
+
+    return {"text": txt, "entities": entities, "scores": scores}
 
 
 def get_wikidata_info(curid) -> dict:
-
     tagme_manager = TagmeManager(rho=0.15)
     wiki_id = tagme_manager.get_annotation_info_with_id(curid)
     result = tagme_manager.get_wikidata_item_info_general(wiki_id)
@@ -59,3 +61,12 @@ def get_wikidata_info(curid) -> dict:
         "item_info": result.get('item_info', {}),
         "instance_of": result.get('instance_of', [])
     }
+
+
+def save_search(txt: str, ip, db):
+    query = text("""
+        INSERT INTO searches (text, ip) VALUES (:text, :ip);
+    """)
+    db.session.execute(query, {"text": txt, "ip": ip})
+    db.session.commit()
+    return

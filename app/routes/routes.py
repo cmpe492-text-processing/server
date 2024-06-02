@@ -18,7 +18,15 @@ def init_routes(app, db, cache):
         if query.strip() == "":
             return jsonify({"error": "Empty query"}), 204
 
-        return jsonify(get_basic_info(query)), 200
+        try :
+            if request.headers.getlist("X-Forwarded-For"):
+                ip = request.headers.getlist("X-Forwarded-For")[0]
+            else:
+                ip = request.remote_addr
+        except:
+            ip = "127.0.0.1"
+
+        return jsonify(get_basic_info(query, ip, db)), 200
 
     @app.route("/histogram/sentiment", methods=["GET"])
     def sentiment_histogram():
