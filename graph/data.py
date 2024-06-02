@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 
+from app.main import cache
 from utils.database import DatabaseManager
 from utils.tagme_manager import TagmeManager
 
@@ -76,7 +77,7 @@ def process_data():
     # key list
     key_list = list(occurrences.keys())
     tagme_mng = TagmeManager(0.1)
-    relatedness_map = tagme_mng.get_relatedness_map(key_list, DEBUG)
+    relatedness_map = tagme_mng.get_relatedness_map(key_list, cache=cache)
 
     relatedness = {key: relatedness_map[(str(key[0]), str(key[1]))] for key in key_list}
 

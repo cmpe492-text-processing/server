@@ -1,7 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-from typing_extensions import deprecated
 
 
 class Network:

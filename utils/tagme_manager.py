@@ -111,27 +111,45 @@ class TagmeManager:
 
     def get_relatedness_map(self,
                             entities: list[(int, int)],
-                            debug=False) \
-            -> dict[(int, int), float]:
+                            cache,
+                            debug=False) -> dict[(int, int), float]:
 
         relatedness_map: dict[(int, int), float] = {}
         entities = [tuple(sorted(entity_pair)) for entity_pair in entities]
         tagme.GCUBE_TOKEN = self.api_key
-
-        batch = 100
         total_entities = len(entities)
+
         if debug:
-            print(f"Fetching relatedness scores for {total_entities} entity pairs.")
-        for i in range(0, total_entities, batch):
-            if debug:
-                print(f"Fetching relatedness scores for entities {i} to {i + batch}")
+            print(f"Total entities to fetch relatedness scores: {total_entities}")
+
+        entities_to_fetch = []
+        cache_hits = 0
+        cache_misses = 0
+
+        for entity_pair in entities:
+            cache_key = f"rel_{entity_pair[0]}_{entity_pair[1]}"
+            cached_value = cache.get(cache_key)
+            if cached_value is not None:
+                relatedness_map[entity_pair] = cached_value
+                cache_hits += 1
+            else:
+                entities_to_fetch.append(entity_pair)
+                cache_misses += 1
+
+        if debug:
+            print(f"Cache hits: {cache_hits}, Cache misses: {cache_misses}")
+            print(f"Fetching relatedness scores for {len(entities_to_fetch)} entity pairs.")
+
+        if entities_to_fetch:
             for j in range(5):
                 try:
-                    relations = tagme.relatedness_wid(entities[i : i + batch])
+                    relations = tagme.relatedness_wid(entities_to_fetch)
                     for relation in relations.relatedness:
-                        relatedness_map[(relation.title1, relation.title2)] = (
-                            relation.rel
-                        )
+                        entity_pair = (int(relation.title1), int(relation.title2))
+                        r_val = float(relation.rel)
+                        relatedness_map[entity_pair] = r_val
+                        cache_key = f"rel_{entity_pair[0]}_{entity_pair[1]}"
+                        cache.set(cache_key, r_val)
                     break
                 except Exception as e:
                     print(f"Error fetching relatedness score: {e}")

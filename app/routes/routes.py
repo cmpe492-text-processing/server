@@ -1,12 +1,12 @@
 from spacy import displacy
 from flask import request, render_template, jsonify
 import spacy
-from app.services.graph import get_graph
+from app.services.graph import get_graph, get_graph_v2
 from app.services.tagging import get_basic_info, get_wikidata_info
 from nlp.feature_extractor import FeatureExtractor
 
 
-def init_routes(app, db):
+def init_routes(app, db, cache):
     @app.route("/")
     def home():
         return render_template("home.html")
@@ -36,7 +36,7 @@ def init_routes(app, db):
 
         wiki_id = int(wiki_id)
 
-        return jsonify(get_graph(wiki_id, db)), 200
+        return jsonify(get_graph_v2(wiki_id, db, cache)), 200
 
     @app.route("/wiki-info", methods=["GET"])
     def wiki_info():
