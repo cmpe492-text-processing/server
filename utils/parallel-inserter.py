@@ -19,8 +19,8 @@ def log_process_thread_info(message):
     logger.info(f"{message} (Process ID: {process_id}, Thread ID: {thread_id})")
 
 
-def process_batch(batch, dir_name, subreddit_id):
-    log_process_thread_info("Processing batch")
+def process_batch(batch, dir_name, subreddit_id, file, batch_number, total_batches):
+    log_process_thread_info(f"Processing batch {batch_number} out of {total_batches} for file {file}")
     corpus_list = []
     for line in batch:
         line = line.strip()
@@ -28,7 +28,7 @@ def process_batch(batch, dir_name, subreddit_id):
         corpus = corpus_generator.generate_corpus()
         if corpus is not None:
             corpus_list.append(corpus)
-            logger.info(f"Generated corpus for line: {line}")
+            logger.info(f"Generated corpus for line: {line} in batch {batch_number} for file {file}")
     return corpus_list
 
 
@@ -40,21 +40,27 @@ def process_file(file, raw_data_dir, dir_name):
     with open(os.path.join(raw_data_dir, file), "r") as f:
         lines = f.readlines()
         batches = [lines[i:i + BATCH_SIZE] for i in range(0, len(lines), BATCH_SIZE)]
+        total_batches = len(batches)
 
         database_manager = DatabaseManager()
 
         with ThreadPoolExecutor() as executor:
-            future_to_batch = {executor.submit(process_batch, batch, dir_name, subreddit_id): batch for batch in
-                               batches}
+            future_to_batch = {
+                executor.submit(process_batch, batch, dir_name, subreddit_id, file, batch_num + 1, total_batches): batch
+                for batch_num, batch in enumerate(batches)}
             for future in as_completed(future_to_batch):
+                batch = future_to_batch[future]
+                batch_number = batches.index(batch) + 1
                 try:
                     batch_corpus_list = future.result()
                     if batch_corpus_list:
-                        logger.info(f"Inserting {len(batch_corpus_list)} corpuses into the database from {file}")
-                        log_process_thread_info(f"Inserting batch from file {file}")
+                        logger.info(
+                            f"Inserting {len(batch_corpus_list)} corpuses into the database from batch {batch_number} of file {file}")
+                        log_process_thread_info(f"Inserting batch {batch_number} of file {file}")
                         database_manager.insert_corpuses(batch_corpus_list)
                 except Exception as exc:
-                    logger.error(f"Batch generated an exception: {exc}")
+                    logger.error(
+                        f"Batch {batch_number} out of {total_batches} for file {file} generated an exception: {exc}")
 
     logger.info(f"Processed {len(lines)} lines from {file}")
 
@@ -69,7 +75,7 @@ def local():
         for future in as_completed(future_to_file):
             file = future_to_file[future]
             try:
-                future.result()  # This will re-raise any exceptions caught during processing
+                future.result()
             except Exception as exc:
                 logger.error(f"{file} generated an exception: {exc}")
 
