@@ -35,7 +35,6 @@ def process_batch(batch, dir_name, subreddit_id, file, batch_number, total_batch
 def process_file(file, raw_data_dir, dir_name):
     log_process_thread_info(f"Processing file {file}")
     subreddit_id = int(file.split("_")[1][:2])
-    corpus_batches = []
 
     with open(os.path.join(raw_data_dir, file), "r") as f:
         lines = f.readlines()
@@ -56,8 +55,16 @@ def process_file(file, raw_data_dir, dir_name):
                     if batch_corpus_list:
                         logger.info(
                             f"Inserting {len(batch_corpus_list)} corpuses into the database from batch {batch_number} of file {file}")
-                        log_process_thread_info(f"Inserting batch {batch_number} of file {file}")
-                        database_manager.insert_corpuses(batch_corpus_list)
+                        try_count = 10
+                        while try_count > 0:
+                            try:
+                                database_manager.insert_corpuses(batch_corpus_list)
+                                break
+                            except Exception as exc:
+                                logger.error(
+                                    f"Batch {batch_number} out of {total_batches} for file {file} generated an exception: {exc}")
+                                try_count -= 1
+
                 except Exception as exc:
                     logger.error(
                         f"Batch {batch_number} out of {total_batches} for file {file} generated an exception: {exc}")

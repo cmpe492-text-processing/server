@@ -39,8 +39,7 @@ class DatabaseManager:
             cursor = self.connection.cursor()
             query = """
             INSERT INTO corpuses (platform, entry_id, data)
-            VALUES (%s, %s, %s::jsonb)
-            ON CONFLICT (platform, entry_id) DO NOTHING;
+            VALUES (%s, %s, %s::jsonb);
             """
 
             for corpus in corpuses:
