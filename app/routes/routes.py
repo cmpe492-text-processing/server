@@ -67,20 +67,50 @@ def init_routes(app, db, cache):
         wiki_id = int(wiki_id)
 
         feature_extractor = FeatureExtractor(wiki_id)
-        response, most_occurred_entities, main_entity = (
+        response, main_entity = (
             feature_extractor.create_extracted_features_json_wo_relatedness()
         )
 
         return (
             jsonify(
                 {
-                    "most_occurred_entities": most_occurred_entities,
                     "data": response,
                     "main_entity": main_entity,
                 }
             ),
             200,
         )
+    
+    # Route for most occurred entities with page_number
+    @app.route("/most-occurred-entities", methods=["GET"])
+    def most_occurred_entities():
+        wiki_id = request.args.get("id")
+        wiki_id = int(wiki_id)
+        page_number = request.args.get("page_number", 1)
+        
+        if page_number is None:
+            return jsonify({"error": "Invalid page number"}), 400
+        
+
+
+        feature_extractor = FeatureExtractor(wiki_id)
+        most_occurred_entities, max_page = (
+            feature_extractor.get_most_occurred_entities(page_number)
+        )
+
+        return (
+            jsonify(
+                {
+                    "most_occurred_entities": most_occurred_entities,
+                    "max_page": max_page
+                }
+            ),
+            200,
+        )
+    
+
+
+
 
     @app.route("/part-of-speech", methods=["GET"])
     def part_of_speech():
