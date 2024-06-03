@@ -10,6 +10,7 @@ from utils.tagme_manager import TagmeManager
 class Platform(enum.Enum):
     REDDIT = "reddit"
     TWITTER = "twitter"
+    WIKI = "wiki"
 
     def __str__(self):
         return self.value
@@ -69,25 +70,22 @@ class GenerateCorpus:
 
         # clean text - remove special characters, remove stopwords, lower case, etc
         text_processor = TextProcessor()
-        
+
         # Replace \ character with space to prevent tagme api error 
         cleaned_body = text_processor.clean_text(self.body)
         cleaned_title = text_processor.clean_text(self.title)
 
-        
-        
         # NER (Named Entity Recognition) - tag entities in text
         tagme_manager = TagmeManager(rho=0.15)
-        if (cleaned_title == "" and cleaned_body == ""):
+        if cleaned_title == "" and cleaned_body == "":
             return None
-        
 
         # ENTITIES #
-        if (cleaned_title != ""):
+        if cleaned_title != "":
             tagged_title: list[Annotation] = tagme_manager.tag_text(cleaned_title)
         else:
             tagged_title = []
-        if (cleaned_body != ""):
+        if cleaned_body != "":
             tagged_body: list[Annotation] = tagme_manager.tag_text(cleaned_body)
         else:
             tagged_body = []

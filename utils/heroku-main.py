@@ -1,8 +1,11 @@
+import json
+
 from nlp.corpus_extractor import CorpusExtractor
 from nlp.corpus_generator import GenerateCorpus, Platform
 from reddit import Reddit, RedditPost
 from database import DatabaseManager
 import random
+import os
 
 
 def main():
@@ -15,7 +18,9 @@ def main():
     python_subreddits = ['Python', 'PythonProjects2', 'PythonLearning', 'learnpython']
     c_subreddits = ['C_Programming', 'cpp', 'csharp', 'Cplusplus']
     programming_subreddits = ['learnprogramming', 'AskProgramming', 'programming']
-    other_subreddits = ['AskReddit', 'todayilearned', 'news', 'nottheonion', 'IAmA', 'worldnews', 'science', 'changemyview', 'The_Donald', 'askscience', 'copypasta', 'Turkey', 'Yatirim', 'ankara', 'kopyamakarna', 'ArsivUnutmaz', 'trpolitics', 'tibukandtoker']
+    other_subreddits = ['AskReddit', 'todayilearned', 'news', 'nottheonion', 'IAmA', 'worldnews', 'science',
+                        'changemyview', 'The_Donald', 'askscience', 'copypasta', 'Turkey', 'Yatirim', 'ankara',
+                        'kopyamakarna', 'ArsivUnutmaz', 'trpolitics', 'tibukandtoker']
     all_subreddits = (other_subreddits + politics_subreddits + football_subreddits + python_subreddits
                       + c_subreddits + programming_subreddits)
     random.shuffle(all_subreddits)
@@ -27,7 +32,7 @@ def main():
         for post in post_list:
             corpus_generator = GenerateCorpus(Platform.REDDIT, subreddit, post.id, post.title, post.selftext)
             corpus = corpus_generator.generate_corpus()
-            if (corpus != None):
+            if corpus is not None:
                 corpus_list.append(corpus)
             else:
                 print("Empty text, skipped this post for creating corpus")
@@ -38,8 +43,32 @@ def main():
 
         database_manager.insert_posts(post_list)
         database_manager.insert_corpuses(corpus_list)
-    
+
+
+def local():
+    database_manager = DatabaseManager()
+    raw_data_dir = ""
+    dir_name = raw_data_dir.split("/")[-1]
+    files = os.listdir(raw_data_dir)
+    files.sort()
+    for file in files:
+        print(f"\n\nProcessing {file}")
+        subreddit_id = int(file.split("_")[1][:2])
+        with open(os.path.join(raw_data_dir, file), "r") as f:
+            corpus_list = []
+            lines = f.readlines()
+            for line in lines:
+                line = line.strip()
+                corpus_generator = GenerateCorpus(Platform.WIKI, dir_name, subreddit_id, "", line)
+                corpus = corpus_generator.generate_corpus()
+
+                if corpus is not None:
+                    corpus_list.append(corpus)
+                    print("In line for insert: \"", line, end="\"\n")
+
+            print(f"Inserting {len(lines)} corpuses into the database from {file}")
+            database_manager.insert_corpuses(corpus_list)
 
 
 if __name__ == "__main__":
-    main()
+    local()
