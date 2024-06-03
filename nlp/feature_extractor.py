@@ -88,7 +88,7 @@ class FeatureExtractor:
         ))
         
         result = sorted(data, key=lambda x: x["n"], reverse=True)
-        page_number = int(page_number)
+        page_number = int(page_number) - 1
         start_index = page_number * 10
         end_index = min((page_number + 1) * 10, len(result))
 

@@ -1,3 +1,4 @@
 .env
 resources/data/feature_extracted_data
 resources/data/2of2
+resources/data/1of2
