@@ -4,6 +4,7 @@ import spacy
 from app.services.graph import get_graph, get_graph_v2
 from app.services.tagging import get_basic_info, get_wikidata_info
 from nlp.feature_extractor import FeatureExtractor
+from nlp.otf_feature_extractor import OTFFeatureExtractor
 
 
 def init_routes(app, db, cache):
@@ -28,9 +29,6 @@ def init_routes(app, db, cache):
 
         return jsonify(get_basic_info(query, ip, db)), 200
 
-    @app.route("/histogram/sentiment", methods=["GET"])
-    def sentiment_histogram():
-        pass
 
     @app.route("/graph", methods=["GET"])
     def graph():
@@ -57,8 +55,8 @@ def init_routes(app, db, cache):
 
         return jsonify(get_wikidata_info(wiki_id)), 200
 
-    @app.route("/histogram/co-occurrence", methods=["GET"])
-    def co_occurrence_histogram():
+    @app.route("/general-info", methods=["GET"])
+    def general_info():
         wiki_id = request.args.get("id")
 
         if wiki_id is None or not wiki_id.isdigit():
@@ -66,51 +64,19 @@ def init_routes(app, db, cache):
 
         wiki_id = int(wiki_id)
 
-        feature_extractor = FeatureExtractor(wiki_id)
-        response, main_entity = (
-            feature_extractor.create_extracted_features_json_wo_relatedness()
-        )
+        feature_extractor = OTFFeatureExtractor(wiki_id, db)
+        response, most_occurred_entities, main_entity = feature_extractor.prepare_result()
 
         return (
             jsonify(
                 {
                     "data": response,
+                    "most_occurred_entities": most_occurred_entities,
                     "main_entity": main_entity,
                 }
             ),
             200,
         )
-    
-    # Route for most occurred entities with page_number
-    @app.route("/most-occurred-entities", methods=["GET"])
-    def most_occurred_entities():
-        wiki_id = request.args.get("id")
-        wiki_id = int(wiki_id)
-        page_number = request.args.get("page_number", 1)
-        
-        if page_number is None:
-            return jsonify({"error": "Invalid page number"}), 400
-        
-
-
-        feature_extractor = FeatureExtractor(wiki_id)
-        most_occurred_entities, max_page = (
-            feature_extractor.get_most_occurred_entities(page_number)
-        )
-
-        return (
-            jsonify(
-                {
-                    "most_occurred_entities": most_occurred_entities,
-                    "max_page": max_page
-                }
-            ),
-            200,
-        )
-    
-
-
-
 
     @app.route("/part-of-speech", methods=["GET"])
     def part_of_speech():
