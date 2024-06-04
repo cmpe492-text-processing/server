@@ -77,16 +77,15 @@ class FeatureExtractor:
                         )
         return posts
 
-
     def get_most_occurred_entities(self, page_number):
         raw_data = self.read_json_file(self.db_dump_filepath)
-        
+
         if not isinstance(raw_data, list):
             raise ValueError("Expected a list of dictionaries in JSON file.")
         data = self.process_data(self.get_related_corpuses(
             self.wiki_id, raw_data
         ))
-        
+
         result = sorted(data, key=lambda x: x["n"], reverse=True)
         page_number = int(page_number) - 1
         start_index = page_number * 10
@@ -97,7 +96,6 @@ class FeatureExtractor:
         max_page_number = math.ceil(len(result) / 10) - 1
 
         return filtered_result, max_page_number
-
 
     def get_main_entity(self, data):
         # Find the entity that has the wiki id of the center entity
@@ -137,8 +135,8 @@ class FeatureExtractor:
                 wiki_id = entity["wiki_id"]
                 if wiki_id in results.keys():
                     if (
-                        entity.get("sentiment", None) is None
-                        or results[wiki_id].get("sentiment", None) is None
+                            entity.get("sentiment", None) is None
+                            or results[wiki_id].get("sentiment", None) is None
                     ):
                         continue
                     old_neutral = results[wiki_id]["sentiment"].get("neutral", 0)

@@ -69,11 +69,7 @@ def mapping_n_size(n_size, min_n_size, max_n_size):
 
 
 def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multiplier=1.0):
-    timestamp1 = time.time()
-
     corpuses = fetch_corpuses_by_entity_id(wiki_id, db)
-
-    timestamp2 = time.time()
 
     entityid_to_index = {}
     index_to_entity = []
@@ -109,8 +105,6 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
                     compound=index_to_entity[index].sentiment.compound + sentiment["compound"]
                 )
 
-    timestamp3 = time.time()
-
     n = len(index_to_entity)
     co_occ = lil_matrix((n, n), dtype=np.int32)
 
@@ -142,8 +136,6 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
                 co_occ[i, j] += 1
                 co_occ[j, i] += 1
 
-    timestamp4 = time.time()
-
     links = []
     # get the median of non-zero co-occurrences
     non_zero = np.hstack(co_occ.data)
@@ -154,8 +146,6 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
     keys = [(index_to_entity[i].id, index_to_entity[j].id) for i, j in combinations(filtered_indices, 2)
             if co_occ[i, j] > (mean_multiplier * co_occ_mean)]
     relatedness = TagmeManager(0.1).get_relatedness_map(keys, cache, debug=True)
-
-    timestamp5 = time.time()
 
     for key in keys:
         source, target = key
@@ -211,14 +201,6 @@ def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multi
     max_neighbours = 0
     for node in G.nodes:
         max_neighbours = max(max_neighbours, len(list(G.neighbors(node))))
-
-    timestamp6 = time.time()
-
-    print(f"Time taken for fetch_corpuses_by_entity_id: {timestamp2 - timestamp1}")
-    print(f"Time taken for processing entities: {timestamp3 - timestamp2}")
-    print(f"Time taken for processing co-occurrence matrix: {timestamp4 - timestamp3}")
-    print(f"Time taken for computing relatedness: {timestamp5 - timestamp4}")
-    print(f"Time taken for processing links: {timestamp6 - timestamp5}")
 
     return {
         "nodes": [

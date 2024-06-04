@@ -127,7 +127,7 @@ class TagmeManager:
         cache_misses = 0
 
         for entity_pair in entities:
-            cache_key = f"rel_{entity_pair[0]}_{entity_pair[1]}"
+            cache_key = f"{entity_pair[0]}_{entity_pair[1]}"
             cached_value = cache.get(cache_key)
             if cached_value is not None:
                 relatedness_map[entity_pair] = cached_value
@@ -148,7 +148,7 @@ class TagmeManager:
                         entity_pair = (int(relation.title1), int(relation.title2))
                         r_val = float(relation.rel)
                         relatedness_map[entity_pair] = r_val
-                        cache_key = f"rel_{entity_pair[0]}_{entity_pair[1]}"
+                        cache_key = f"{entity_pair[0]}_{entity_pair[1]}"
                         cache.set(cache_key, r_val)
                     break
                 except Exception as e:

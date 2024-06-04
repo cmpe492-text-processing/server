@@ -1,4 +1,8 @@
 .env
 resources/data/feature_extracted_data
 resources/data/2of2
+resources/data/2of2copy
+resources/data/.DS_Store
+resources/.DS_Store
+resources/data/.DS_Store
 resources/data/1of2

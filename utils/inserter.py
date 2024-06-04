@@ -11,6 +11,8 @@ def local():
     files = os.listdir(raw_data_dir)
     files.sort()
     for file in files:
+        if file == ".DS_Store":
+            continue
         print(f"\n\nProcessing {file}")
         subreddit_id = int(file.split("_")[1][:2])
         with open(os.path.join(raw_data_dir, file), "r") as f:
