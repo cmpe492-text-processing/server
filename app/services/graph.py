@@ -11,7 +11,6 @@ import time
 import networkx as nx
 
 
-
 @dataclass
 class Sentiment:
     positive: float
@@ -55,6 +54,7 @@ def sigmoid_mapping_co_occ(co_occ_rr, co_occ_min, co_occ_max):
     # [1, 10]
     return 10 * scaled_value
 
+
 def mapping_n_size(n_size, min_n_size, max_n_size):
     # Normalize n_size to the range [0, 1]
     normalized_n_size = (n_size - min_n_size) / (max_n_size - min_n_size)
@@ -65,7 +65,7 @@ def mapping_n_size(n_size, min_n_size, max_n_size):
     # Scale to the range [3, 10]
     scaled_value = 3 + 7 * mapped_value
 
-    return  scaled_value
+    return scaled_value
 
 
 def get_graph_v2(wiki_id: int, db, cache, entity_count_threshold=500, mean_multiplier=1.0):
@@ -339,3 +339,18 @@ def fetch_corpuses_by_entity_id(entity_id: int, db):
     result = db.session.execute(query, {'entity_id': entity_id})
     rows = result.fetchall()
     return [row[0] for row in rows]
+
+
+def has_enough_data(wiki_id: int, db):
+    query = text("""
+    SELECT COUNT(*)
+    FROM corpuses
+    WHERE EXISTS (
+        SELECT 1
+        FROM jsonb_array_elements(data->'entities') as entity
+        WHERE entity->>'wiki_id' = CAST(:entity_id AS TEXT)
+    );
+    """)
+    result = db.session.execute(query, {'entity_id': wiki_id})
+    count = result.fetchone()[0]
+    return count > 5

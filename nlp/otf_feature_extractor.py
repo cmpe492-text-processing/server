@@ -11,7 +11,6 @@ class OTFFeatureExtractor:
         self.wiki_id = wiki_id
         self.db = db
 
-    
     # Instead of reading from a json file, I will replace it with a SQL query
     def fetch_corpuses_with_entity_id(self):
         query = text("""
@@ -26,7 +25,7 @@ class OTFFeatureExtractor:
         result = self.db.session.execute(query, {'entity_id': self.wiki_id})
         rows = result.fetchall()
         return [row[0] for row in rows]
-    
+
     def fetch_main_entity_with_id(self, data):
         for entity in data:
             if entity["wiki_id"] == self.wiki_id:
@@ -45,7 +44,7 @@ class OTFFeatureExtractor:
         main_entity = self.fetch_main_entity_with_id(result)
         occurred_entities = sorted(result, key=lambda x: x["n"], reverse=True)
 
-        return result, occurred_entities ,main_entity
+        return result, occurred_entities, main_entity
 
     @staticmethod
     def process_data(data):
@@ -98,6 +97,7 @@ class OTFFeatureExtractor:
 def main():
     otf_feature_extractor = OTFFeatureExtractor(4848272)
     print(otf_feature_extractor.fetch_corpuses_with_entity_id())
+
 
 if __name__ == "__main__":
     main()

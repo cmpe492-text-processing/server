@@ -1,7 +1,7 @@
 from spacy import displacy
 from flask import request, render_template, jsonify
 import spacy
-from app.services.graph import get_graph, get_graph_v2
+from app.services.graph import get_graph, get_graph_v2, has_enough_data
 from app.services.tagging import get_basic_info, get_wikidata_info
 from nlp.feature_extractor import FeatureExtractor
 from nlp.otf_feature_extractor import OTFFeatureExtractor
@@ -19,7 +19,7 @@ def init_routes(app, db, cache):
         if query.strip() == "":
             return jsonify({"error": "Empty query"}), 204
 
-        try :
+        try:
             if request.headers.getlist("X-Forwarded-For"):
                 ip = request.headers.getlist("X-Forwarded-For")[0]
             else:
@@ -29,9 +29,24 @@ def init_routes(app, db, cache):
 
         return jsonify(get_basic_info(query, ip, db)), 200
 
-
     @app.route("/graph", methods=["GET"])
     def graph():
+        wiki_id = request.args.get("id")
+
+        if wiki_id is None:
+            return jsonify({"error": "Invalid ID"}), 400
+
+        wiki_id.strip('/')
+
+        if not wiki_id.isdigit():
+            return jsonify({"error": "Invalid ID"}), 400
+
+        wiki_id = int(wiki_id)
+
+        return jsonify(get_graph_v2(wiki_id, db, cache)), 200
+
+    @app.route("/is-okay", methods=["GET"])
+    def is_okay():
         wiki_id = request.args.get("id")
 
         if wiki_id is None:
@@ -42,7 +57,7 @@ def init_routes(app, db, cache):
 
         wiki_id = int(wiki_id)
 
-        return jsonify(get_graph_v2(wiki_id, db, cache)), 200
+        return has_enough_data(wiki_id, db), 200
 
     @app.route("/wiki-info", methods=["GET"])
     def wiki_info():
